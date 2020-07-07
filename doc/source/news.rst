@@ -7,6 +7,28 @@
 News
 ====
 
+.. _release-10-0-5:
+
+Release 10.0.5 - 2020-07-29
+---------------------------
+
+Improvements
+^^^^^^^^^^^^
+
+* [:doc:`reference/indexing`] Improved performance of offline index construction on VC++ version
+
+* [:doc:`reference/commands/select`] Use ``null`` instead ``NaN``, ``Infinity``, and ``-Infinity`` when Groonga outputs result for JSON format.
+
+  * Because JSON doesn't support them.
+
+* [:doc:`reference/commands/select`] Add support fot aggregating deviation value.
+
+Fixes
+^^^^^
+
+Thanks
+^^^^^^
+
 .. _release-10-0-4:
 
 Release 10.0.4 - 2020-06-29
