@@ -21,7 +21,140 @@ Improvements
 
   * Because JSON doesn't support them.
 
-* [:doc:`reference/commands/select`] Add support fot aggregating deviation value.
+* [:doc:`reference/commands/select`] Add support fot aggregating standard deviation value.
+
+  * For example, we can calculate a standard deviation for every group as below.
+
+    .. code-block::
+
+        table_create Items TABLE_HASH_KEY ShortText
+        column_create Items price COLUMN_SCALAR UInt32
+        column_create Items tag COLUMN_SCALAR ShortText
+
+        load --table Items
+        [
+        {"_key": "Book",  "price": 1000, "tag": "A"},
+        {"_key": "Note",  "price": 1000, "tag": "B"},
+        {"_key": "Box",   "price": 500,  "tag": "B"},
+        {"_key": "Pen",   "price": 500,  "tag": "A"},
+        {"_key": "Food",  "price": 500,  "tag": "C"},
+        {"_key": "Drink", "price": 300,  "tag": "B"}
+        ]
+
+        select Items \
+          --drilldowns[tag].keys tag \
+          --drilldowns[tag].output_columns _key,_nsubrecs,price_sd \
+          --drilldowns[tag].columns[price_sd].stage group \
+          --drilldowns[tag].columns[price_sd].type Float \
+          --drilldowns[tag].columns[price_sd].flags COLUMN_SCALAR \
+          --drilldowns[tag].columns[price_sd].value 'aggregator_sd(price)' \
+          --output_pretty yes
+        [
+          [
+            0,
+            1594339851.924836,
+            0.002813816070556641
+          ],
+          [
+            [
+              [
+                6
+              ],
+              [
+                [
+                  "_id",
+                  "UInt32"
+                ],
+                [
+                  "_key",
+                  "ShortText"
+                ],
+                [
+                  "price",
+                  "UInt32"
+                ],
+                [
+                  "tag",
+                  "ShortText"
+                ]
+              ],
+              [
+                1,
+                "Book",
+                1000,
+                "A"
+              ],
+              [
+                2,
+                "Note",
+                1000,
+                "B"
+              ],
+              [
+                3,
+                "Box",
+                500,
+                "B"
+              ],
+              [
+                4,
+                "Pen",
+                500,
+                "A"
+              ],
+              [
+                5,
+                "Food",
+                500,
+                "C"
+              ],
+              [
+                6,
+                "Drink",
+                300,
+                "B"
+              ]
+            ],
+            {
+              "tag": [
+                [
+                  3
+                ],
+                [
+                  [
+                    "_key",
+                    "ShortText"
+                  ],
+                  [
+                    "_nsubrecs",
+                    "Int32"
+                  ],
+                  [
+                    "price_sd",
+                    "Float"
+                  ]
+                ],
+                [
+                  "A",
+                  2,
+                  250.0
+                ],
+                [
+                  "B",
+                  3,
+                  294.3920288775949
+                ],
+                [
+                  "C",
+                  1,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        ]
+
+    * We can calculate sample standard deviation to specifing ``aggregate_sd(target, {"unbiased": true})``.
 
 Fixes
 ^^^^^
