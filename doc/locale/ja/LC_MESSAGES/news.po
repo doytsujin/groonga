@@ -33,11 +33,53 @@ msgstr ""
 msgid "News"
 msgstr "お知らせ"
 
-msgid "Release 10.0.4 - 2020-06-29"
-msgstr "10.0.4リリース - 2020-06-29"
+msgid "Release 10.0.5 - 2020-07-29"
+msgstr "10.0.5リリース - 2020-07-29"
 
 msgid "Improvements"
 msgstr "改良"
+
+msgid ""
+"[:doc:`reference/indexing`] Improved performance of offline index "
+"construction on VC++ version"
+msgstr ""
+"[:doc:`/reference/indexing`] VC++版の静的インデックス構築のパフォーマンスを改"
+"善しました。"
+
+msgid ""
+"[:doc:`reference/commands/select`] Use ``null`` instead ``NaN``, "
+"``Infinity``, and ``-Infinity`` when Groonga outputs result for JSON format."
+msgstr ""
+"[:doc:`reference/commands/select`] JSON形式で出力する際に ``NaN`` や "
+"``Infinity`` 、 ``-Infinity`` の代わりに ``null`` を出力するようにしました。"
+
+msgid "Because JSON doesn't support them."
+msgstr "これらの値はJSONではサポートされていないためです。"
+
+msgid ""
+"[:doc:`reference/commands/select`] Add support fot aggregating standard "
+"deviation value."
+msgstr "[:doc:`/reference/commands/select`] 標準偏差の集計をサポートしました。"
+
+msgid ""
+"For example, we can calculate a standard deviation for every group as below."
+msgstr "例えば、以下のようにグループごとの標準偏差を計算できます。"
+
+msgid ""
+"We can calculate sample standard deviation to specifing "
+"``aggregate_sd(target, {\"unbiased\": true})``."
+msgstr ""
+"``aggregate_sd(target, {\"unbiased\": true})`` と指定することで、不偏標準偏差"
+"を計算できます。"
+
+msgid "Fixes"
+msgstr "修正"
+
+msgid "Thanks"
+msgstr "感謝"
+
+msgid "Release 10.0.4 - 2020-06-29"
+msgstr "10.0.4リリース - 2020-06-29"
 
 msgid ""
 "[:doc:`reference/tables`] Added support for registering 400M records into a "
@@ -216,9 +258,6 @@ msgstr ""
 "[:doc:`reference/commands/select`] 参照カウントモード時の ``load_table`` のパ"
 "フォーマンスを改善しました。"
 
-msgid "Fixes"
-msgstr "修正"
-
 msgid ""
 "Fixed a bug that the database of Groonga was broken when we search by using "
 "the dynamic columns that don't specify a ``--filter`` and stridden over "
@@ -240,9 +279,6 @@ msgid ""
 msgstr ""
 "参照 ``uvector`` が要素を持っていないとき、 ``_nsubrecs`` を余分にカウントす"
 "る問題を修正しました。"
-
-msgid "Thanks"
-msgstr "感謝"
 
 msgid "naoa"
 msgstr "naoaさん"
